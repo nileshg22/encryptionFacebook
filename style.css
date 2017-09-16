@@ -1,0 +1,32 @@
+#myPicture {
+  height: auto;
+  width: 100%;
+}
+
+.invisible {
+  color: transparent;
+}
+
+.alignCenter {
+  text-align: center;
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+#headerText {
+  font-weight: bold;
+  font-style: italic;
+  color: red;
+  text-align: center;
+  text-decoration: underline;
+}
+
+#urlText {
+  width: 75%;
+}
+
+#checkButton {
+  visibility: hidden;
+}
