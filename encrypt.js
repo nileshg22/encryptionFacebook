@@ -10,7 +10,6 @@ window.onload = function() {
 
 
   // Pushing the new file to the image
-
   function updateImage(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -24,6 +23,17 @@ window.onload = function() {
     updateImage(this);
   });
   // Done
+
+  document.getElementById('encodeButton').addEventListener('click', makeCheckGreatAgain);
+
+  function makeCheckGreatAgain() {
+    check_Button = document.getElementById('checkButton');
+    check_Button.style.visibility="visible";
+    url_text = document.getElementById('urlText');
+    url_text.placeholder="new url";
+  }
+
+
 
 
   // Handling the action following the click of the "encode" button
