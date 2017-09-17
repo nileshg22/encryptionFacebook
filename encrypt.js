@@ -59,13 +59,42 @@ window.onload = function() {
   else {
       alert("Please enter a URL");
     }
+
+
+
   }
   // Done
 
   document.getElementById('checkButton').addEventListener('click', checkHandler);
 
   function checkHandler() {
-    
+    if ($('#urlText').val() != null && $('#urlText').val() != "") {
+      var form = new FormData();
+      form.append("hash", url_text.value);
+      form.append("image", document.getElementById('tempFile').files[0]);
+      form.forEach(console.log)
+
+      // $.post('localhost:3000/encode', form);
+      $.ajax({
+        url: 'http://localhost:3000/check',
+        data: form,
+        cache: false,
+        contentType: false,
+        // dataType:
+        processData: false,
+        type: 'POST',
+        success: function(ret, status) {
+    if (ret == 'False') {
+      alert('ERROR: Bad image detected');
+    }
+    else {
+      alert('You are not the victim!!!!!')
+    }
+        }});
+    }
+  else {
+      alert("Please enter a URL");
+    }
 
 
   }
