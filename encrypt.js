@@ -49,7 +49,12 @@ window.onload = function() {
         processData: false,
         type: 'POST',
         success: function(ret, status) {
-          console.log(status)
+		if (ret == 'False') {
+			alert('ERROR: Bad image detected');
+		}
+		else {
+			document.getElementById('myPicture').setAttribute('src',  'data:img/png;base64,' + ret)
+		}
         }});
     }
   else {
