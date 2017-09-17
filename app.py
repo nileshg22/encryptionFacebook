@@ -1,3 +1,4 @@
+import base64
 from flask import Flask, request, send_file, jsonify
 from flask_cors import CORS
 import pickle, numpy as np, cv2
@@ -16,13 +17,11 @@ def encode():
         f.save('prof_pic_encoded.png')
         hash = request.form['hash'].strip()
         img = LSBSteg(cv2.imread('prof_pic_encoded.png'))
-        print(hash)
         txt = img.decode_text()
-        print('facebook' in txt)
         if 'facebook' not in txt or txt == hash:
             cv2.imwrite('prof_pic_secure.png', img.encode_text(hash))
-            return_img = send_file('prof_pic_secure.png')
-            return return_img
+            with open('prof_pic_secure.png', 'rb') as image_file:
+                return base64.b64encode(image_file.read())
         else:
             return 'False'
 
@@ -30,8 +29,14 @@ def encode():
 @app.route('/test', methods=['POST'])
 def test():
     if request.method == 'POST':
-        string = request.form['string']
-        
-    return 'Good job!'
+        f = request.files['image']
+        f.save('prof_pic_encoded.png')
+        hash = request.form['hash'].strip()
+        img = LSBSteg(cv2.imread('prof_pic_encoded.png'))
+        txt = img.decode_text()
+        if 'facebook' not in txt or txt == hash:
+            return 'True'
+        else:
+            return 'False'
 
 app.run(debug=True, port=3000)
