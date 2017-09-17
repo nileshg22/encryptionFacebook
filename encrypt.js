@@ -38,10 +38,11 @@ window.onload = function() {
       var form = new FormData();
       form.append("hash", url_text.value);
       form.append("image", document.getElementById('tempFile').files[0]);
+      form.forEach(console.log)
 
       // $.post('localhost:3000/encode', form);
       $.ajax({
-        url: 'http://1dcd507a.ngrok.io/encode',
+        url: 'http://localhost:3000/encode',
         data: form,
         cache: false,
         contentType: false,
