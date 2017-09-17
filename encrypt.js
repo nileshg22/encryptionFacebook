@@ -2,6 +2,7 @@ window.onload = function() {
 
   // Manipulating the upload button to allow it to open files
   document.getElementById('uploadButton').addEventListener('click', imageUpload);
+  alert_box = document.getElementById('alertBox');
 
   function imageUpload() {
         document.getElementById('tempFile').click();
@@ -32,9 +33,6 @@ window.onload = function() {
       check_Button.style.visibility="hidden";
       url_text = document.getElementById('urlText');
       url_text.placeholder="new url";
-
-
-
       var form = new FormData();
       form.append("hash", url_text.value);
       form.append("image", document.getElementById('tempFile').files[0]);
@@ -57,6 +55,17 @@ window.onload = function() {
       alert("Please enter a URL");
     }
   }
+  // Done
+
+  document.getElementById('checkButton').addEventListener('click', checkHandler);
+
+  function checkHandler() {
+    
+
+
+  }
+
+
 
 
 // image file and hash profile URL
