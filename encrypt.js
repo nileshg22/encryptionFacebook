@@ -27,27 +27,38 @@ window.onload = function() {
   document.getElementById('encodeButton').addEventListener('click', makeCheckGreatAgain);
 
   function makeCheckGreatAgain() {
-    check_Button = document.getElementById('checkButton');
-    check_Button.style.visibility="visible";
-    url_text = document.getElementById('urlText');
-    url_text.placeholder="new url";
-  }
+    if ($('#urlText').val() != null && $('#urlText').val() != "") {
+      check_Button = document.getElementById('checkButton');
+      check_Button.style.visibility="visible";
+      url_text = document.getElementById('urlText');
+      url_text.placeholder="new url";
 
 
 
+      var form = new FormData();
+      form.append("hash", url_text.value);
+      form.append("image", document.getElementById('tempFile').files[0]);
 
-  // Handling the action following the click of the "encode" button
-  document.getElementById('encodeButton').addEventListener('click', encodeHandler);
-  function encodeHandler() {
-    if (document.getElementbyId('urlText').value != NULL || document.getElementbyId('urlText').value != "") {
-        // document.getElementbyId('urlText').value
+      // $.post('localhost:3000/encode', form);
+      $.ajax({
+        url: 'http://1dcd507a.ngrok.io/encode',
+        data: form,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        success: function(ret, status) {
+          console.log(status)
+        }});
+    }
+  else {
+      alert("Please enter a URL");
     }
   }
-  // Done
 
 
-
-
+// image file and hash profile URL
+// /encode and /testa
 
 
 };
