@@ -29,7 +29,7 @@ window.onload = function() {
   function makeCheckGreatAgain() {
     if ($('#urlText').val() != null && $('#urlText').val() != "") {
       check_Button = document.getElementById('checkButton');
-      check_Button.style.visibility="visible";
+      check_Button.style.visibility="hidden";
       url_text = document.getElementById('urlText');
       url_text.placeholder="new url";
 
@@ -45,6 +45,7 @@ window.onload = function() {
         data: form,
         cache: false,
         contentType: false,
+        // dataType:
         processData: false,
         type: 'POST',
         success: function(ret, status) {
