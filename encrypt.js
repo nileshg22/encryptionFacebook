@@ -30,7 +30,7 @@ window.onload = function() {
   function makeCheckGreatAgain() {
     if ($('#urlText').val() != null && $('#urlText').val() != "") {
       check_Button = document.getElementById('checkButton');
-      check_Button.style.visibility="hidden";
+      check_Button.style.visibility="visible";
       url_text = document.getElementById('urlText');
       url_text.placeholder="new url";
       var form = new FormData();
@@ -76,7 +76,7 @@ window.onload = function() {
 
       // $.post('localhost:3000/encode', form);
       $.ajax({
-        url: 'http://localhost:3000/check',
+        url: 'http://localhost:3000/test',
         data: form,
         cache: false,
         contentType: false,
